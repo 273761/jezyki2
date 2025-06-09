@@ -1,8 +1,8 @@
-from flask import Flask, send_file, jsonify, send_from_directory
+from flask import Flask, send_file, jsonify
 import pyodbc
 import os
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__)
 
 # Konfiguracja połączenia SQL
 server = 'serwer-jezyki.database.windows.net,1433'
@@ -14,9 +14,9 @@ driver = '{ODBC Driver 18 for SQL Server}'
 conn_str = f'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30'
 conn = pyodbc.connect(conn_str)
 
-@app.route('/')
-def home():
-    return send_from_directory('static', 'index.html')
+@app.route("/")
+def index():
+    return send_file("index.html")  # Wczytuje index.html z bieżącego folderu
 
 @app.route("/ile-niemiecki")
 def ile_niemiecki():
@@ -26,5 +26,4 @@ def ile_niemiecki():
     return jsonify({"count": result[0] if result else 0})
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True)
