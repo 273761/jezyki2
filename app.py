@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 server=os.getenv('nazwaserwera')
 database=os.getenv('nazwabazy')
-username=os.getenv('username')
-password=os.getenv('nazwauzytkownika')
+username=os.getenv('nazwauzytkownika')
+password=os.getenv('danehasla')
 
 driver = '{ODBC Driver 18 for SQL Server}'
 
