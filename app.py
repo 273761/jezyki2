@@ -4,11 +4,11 @@ import os
 
 app = Flask(__name__)
 
-# Konfiguracja połączenia SQL
-server = 'serwer-jezyki.database.windows.net,1433'
-database = 'bazaJezyki'
-username = 'adminlogin273761'
-password = 'Password273761'
+server=os.getenv('nazwaserwera')
+database=os.getenv('nazwabazy')
+username=os.getenv('username')
+password=os.getenv('nazwauzytkownika')
+
 driver = '{ODBC Driver 18 for SQL Server}'
 
 conn_str = f'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30'
