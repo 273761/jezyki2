@@ -25,5 +25,18 @@ def ile_niemiecki():
     result = cursor.fetchone()
     return jsonify({"count": result[0] if result else 0})
 
+@app.route("/ile-hiszpanski-dolnoslaskie-licea")
+def ile_hiszpanski_dolnoslaskie_licea():
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT SUM(CAST(REPLACE(liczbaUczniow, ' ', '') AS INT)) 
+        FROM [dbo].[tabelaJezyki] 
+        WHERE jezykObcy = 'hiszpański' 
+          AND wojewodztwo = 'dolnośląskie' 
+          AND typSzkoly = 'liceum'
+    """)
+    result = cursor.fetchone()
+    return jsonify({"count": result[0] if result else 0})
+
 if __name__ == "__main__":
     app.run(debug=True)
