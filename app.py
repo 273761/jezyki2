@@ -34,5 +34,5 @@ def ile_hiszpanski_dolnoslaskie_licea():
     result = cursor.fetchone()
     return jsonify({"count": result[0] if result else 0})
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     app.run(debug=True)
